@@ -60,12 +60,12 @@ HOW TO CITE
 ```
 @misc{Emery2018code,
   author       = {Emery, Brian and Letcherononguong, Krisada and Ireson, Kirk and Gotschalk, Chris and Ohlmann, Carter and Washburn, Libe},
-  title        = {{Drifter Simulation Toolbox for MATLAB}, Software Release Version 9.0,},
+  title        = {{Drifter Simulation Toolbox for MATLAB}, Software Release Version 9.0, https://doi.org/10.5281/zenodo.3350830},
   version      = {9.0},
   month        = Jul,
   year         = 2019,
-  doi          = {10.5281/zenodo.},
-  url          = {https://doi.org/10.5281/zenodo.}
+  doi          = {10.5281/zenodo.3350830},
+  url          = {https://doi.org/10.5281/zenodo.3350830}
 }
 ```
 
