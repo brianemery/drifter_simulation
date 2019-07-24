@@ -54,7 +54,20 @@ NOTES
   keyboard shortcut 'cmd =' ) makes it easy to move among these.
 - Data structures contain variables of similar origin following the HFRProgs
   convention, rows = locations, cols = time
-
+  
+HOW TO CITE
+  
+```
+@misc{Emery2018code,
+  author       = {Emery, Brian and Letcherononguong, Krisada and Ireson, Kirk and Gotschalk, Chris and Ohlmann, Carter and Washburn, Libe},
+  title        = {{Drifter Simulation Toolbox for MATLAB}, Software Release Version 9.0,},
+  version      = {9.0},
+  month        = Jul,
+  year         = 2019,
+  doi          = {10.5281/zenodo.},
+  url          = {https://doi.org/10.5281/zenodo.}
+}
+```
 
 
 
