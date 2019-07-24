@@ -16,12 +16,12 @@ HOW TO USE IT
 
 
 AUTHORS
-Brian Emery
-Krisada Letcherononguong
-Kirk Ireson
-Chris Gotschalk
-Carter Ohlmann
-Libe Washburn
+Brian Emery  
+Krisada Letcherononguong  
+Kirk Ireson  
+Chris Gotschalk  
+Carter Ohlmann  
+Libe Washburn  
 
 
 ACKNOWLEDGMENT
