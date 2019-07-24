@@ -15,7 +15,7 @@ HOW TO USE IT
 - start with the forthcomming example ...
 
 
-AUTHORS
+AUTHORS  
 Brian Emery  
 Krisada Letcherononguong  
 Kirk Ireson  
