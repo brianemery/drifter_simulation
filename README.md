@@ -4,11 +4,11 @@ v9.0
 
 
 Tools for simulating drifters given gridded vector data, such as from 
-oceanoagraphic HF radar data. 
+oceanographic HF radar data. 
 
 - Uses 4th order Runge-Kutta for accurate integration of discrete velocities
 - Optional settings to simulate subgrid turbulence
-
+- Dependencies are in the /private folder. Also see the note about the use of code folding and subfunctions.
 
 HOW TO USE IT
 - download it and add the unzipped directory to your MATLAB path
