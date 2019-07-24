@@ -2,6 +2,8 @@
 
 v9.0
 
+[![DOI](https://zenodo.org/badge/198690464.svg)](https://zenodo.org/badge/latestdoi/198690464)
+
 Tools for simulating drifters given gridded vector data, such as from 
 oceanographic HF radar data. Use of this code has resulted in at least two papers, which are cited below.
 Improvements developed for Matson et al. (2019), which includes error estimation, are not yet included here. 
