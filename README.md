@@ -94,5 +94,7 @@ HOW TO CITE
 }
 ```
 
-
+EXAMPLE OUTPUT
+Based on the test data, drifter positions as green dots, final positions as blue dots. 
+![alt text](https://github.com/brianemery/drifter_simulation/blob/master/test_data/drifter_sim_example.png?raw=true)
 
