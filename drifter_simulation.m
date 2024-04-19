@@ -44,10 +44,28 @@ function DRFT = drifter_simulation(TUV, CFG, TURB)
 % TURB.dt = 60;           % min. Model delta time in minutes (must be less than Tu, Tv)
 % TURB.sd = false; ** need info about this ....
 % 
-% EXAMPLE: (OLD)
-% locn=[-120.723333 34.61033333];
-% st=datenum(2002,5,31,15,0,0):4/24: datenum(2002,6,30,23,0,0);
-% [Lon,Lat,T,iStart,iEnd]=drifter_simulation(locn,st);
+% % EXAMPLE:
+% % Assuming you have TUV data in the HFRProgs TUV format (see test_data),
+% % create drifter deployment location and time arrays:
+% 
+% dstart = pacific2GMT(datenum(2015,5,20,11,0,0));
+% 
+% xy = [-120-10.68/60 34+25.38/60
+%       -120-09.12/60 34+26.22/60
+%       -120-09.42/60 34+27.30/60
+%       -120-08.58/60 34+26.52/60
+%       -120-06.03/60 34+27.67/60
+%       -120-06.03/60 34+27.67/60];
+%
+% % Deploy a drifter at these locations at every time step in the TUV data:
+% CFG.deploy_locations  = repmat(xy,length(TUV.TimeStamp),1); 
+% CFG.deploy_times = reshape( TUV.TimeStamp(:)*ones(1,size(xy,1)), numel(TUV.TimeStamp(:)*ones(1,size(xy,1))),1);
+% 
+% % These basically just need to have the same number of rows
+% 
+% % Now run the code:
+% DRFT = drifter_simulation(TUV, CFG);
+
 
 % Copyright (C) 2009-2011 Brian Emery
 % Version 1.0, Using Krisada's calcposdrifter.m and supporting RungaKutta code
@@ -57,6 +75,7 @@ function DRFT = drifter_simulation(TUV, CFG, TURB)
 % Version 9.0 14Jan2011 generalized time setp, check configurations
 %                       moved the total data clean up and loading to 
 %                       calling function, made TUV an input
+% Version 9.1 19Apr2024 Added test case and test data, fixed the example             
 
 % TODO
 % Generalize timestep. Notes:
@@ -65,10 +84,6 @@ function DRFT = drifter_simulation(TUV, CFG, TURB)
 %    
 % Update example
 % 
-% TEST CASE IDEA
-% use real drifter data to create radar 'totals' - then use this mfile to
-% recreate the drifter data
-%
 % Parallelize loops?
 %
 % Cull unneeded code that is sticking around since this was way less
@@ -77,6 +92,9 @@ function DRFT = drifter_simulation(TUV, CFG, TURB)
 % --------------------------------------------------------- 
 %  DEFAULT SETTINGS / INPUT CHECKS
 %---------------------------------------------------------- 
+
+% check for test case
+if strcmp('--t',TUV), test_case, return, end
 
 % If CFG not defined, set as empty, check fields later
 if nargin < 2, disp('CFG not defined'), keyboard, end
@@ -888,3 +906,35 @@ ax=[x(1)-dx x(2)+dx y(1)-dy y(2)+dy ];
 end
 
 
+function test_case
+% From spill_simulation.m and spill_simulation_plot.m
+
+load ./test_data/drifter_simulation.mat
+
+DRFT = drifter_simulation(TUV, CFG, TURB);
+
+
+% plot the results (need sbc mapping and TUV plotting tools):
+
+LS.Color = 'b';
+LS.Marker = 'o';
+LS.MarkerSize = 6;
+LS.MarkerFaceColor = 'b';
+LS.MarkerEdgeColor = 'b';
+LS.LineStyle = 'none';
+LS.LineWidth = 0.5000;
+
+figure
+
+axis([-120.4371 -119.6440   33.9979   34.5790])
+
+sbc
+
+plot(DRFT.Lon(:),DRFT.Lat(:),'.')
+
+HV = plotrad2tot_simple(TUV.U(:,end),TUV.V(:,end),TUV.LonLat);
+
+HD = plot(DRFT.Lon(:,end),DRFT.Lat(:,end),LS);
+
+
+end

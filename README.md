@@ -1,6 +1,6 @@
 ## DRIFTER SIMULATION TOOLBOX FOR MATLAB ##
 
-v9.0
+v9.1
 
 [![DOI](https://zenodo.org/badge/198690464.svg)](https://zenodo.org/badge/latestdoi/198690464)
 
@@ -14,9 +14,34 @@ Otherwise the toolbox includes:
 - Dependencies in the /private folder. Also see the note about the use of code folding and subfunctions.
 
 HOW TO USE IT
-- download it and add the unzipped directory to your MATLAB path
-- start with the forthcomming example ...
+Download it and add the unzipped directory to your MATLAB path.
 
+Run the example:
+```
+% EXAMPLE:
+% Load TUV data in the HFRProgs TUV format (see test_data folder)
+load ./test_data/drifter_simulation.mat TUV
+
+% create drifter deployment location and time arrays: 
+dstart = pacific2GMT(datenum(2015,5,20,11,0,0));
+ 
+xy = [-120-10.68/60 34+25.38/60
+      -120-09.12/60 34+26.22/60
+      -120-09.42/60 34+27.30/60
+      -120-08.58/60 34+26.52/60
+      -120-06.03/60 34+27.67/60
+      -120-06.03/60 34+27.67/60];
+
+% Deploy a drifter at these locations at every time step in the TUV data:
+% (These basically just need to have the same number of rows)
+CFG.deploy_locations  = repmat(xy,length(TUV.TimeStamp),1); 
+CFG.deploy_times = reshape( TUV.TimeStamp(:)*ones(1,size(xy,1)), numel(TUV.TimeStamp(:)*ones(1,size(xy,1))),1);
+
+% Now run the code:
+DRFT = drifter_simulation(TUV, CFG);
+
+```
+More details in the 'test_case' subfunction. 
 
 AUTHORS  
 Brian Emery  
